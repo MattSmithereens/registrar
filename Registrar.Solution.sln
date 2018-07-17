@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registrar", "Registrar\Registrar.csproj", "{82DB06F5-0E34-4AE0-A3FF-DB43A7C6698B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Registrar.Tests", "Registrar.Tests\Registrar.Tests.csproj", "{DDA966E3-2E66-4893-8993-6470E04AC9EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{82DB06F5-0E34-4AE0-A3FF-DB43A7C6698B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82DB06F5-0E34-4AE0-A3FF-DB43A7C6698B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82DB06F5-0E34-4AE0-A3FF-DB43A7C6698B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82DB06F5-0E34-4AE0-A3FF-DB43A7C6698B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDA966E3-2E66-4893-8993-6470E04AC9EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDA966E3-2E66-4893-8993-6470E04AC9EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDA966E3-2E66-4893-8993-6470E04AC9EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDA966E3-2E66-4893-8993-6470E04AC9EA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
