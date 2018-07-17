@@ -19,7 +19,8 @@ namespace Registrar.Controllers
         public ActionResult CreatePost()
         {
             string name = Request.Form["name"];
-            Course newCourse = new Course(name);
+            string courseNum = Request.Form["course"];
+            Course newCourse = new Course(name, courseNum);
             newCourse.Save();
 
             return RedirectToAction("ViewAll");

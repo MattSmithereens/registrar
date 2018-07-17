@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Current Students</h3>
+        @{
+            foreach (var student in Model)
+            {
+                <h4><a href="/student/@student.Id/details">@student.Name</a></h4>
+                <a href="/student/@student.Id/update" class="btn btn-primary">Edit</a>
+                <form method="post" action="/student/@student.Id/delete"><button type="submit" class="btn btn-danger">Delete</button></form>
+                <hr />
+            }
+        }
+    </div>
+</div>

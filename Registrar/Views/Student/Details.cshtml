@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <h3>@Model.Name:</h3>
+        <hr /><br />
+        <h4>@Model.Name</h4>
+        <h5><strong>Courses Enrolled In</strong></h5>
+        @foreach(var course in Model.GetCourses())
+        {
+            <p><a href="~/course/@course.Id/details">@course.Name</a></p>
+        }
+        <a href="/student/@Model.Id/update" class="btn btn-primary">Edit</a>
+        <form method="post" class="inline-form-button" action="/student/@Model.Id/delete"><button type="submit" class="btn btn-danger">Delete</button></form>
+        <hr />
+    </div>
+</div>

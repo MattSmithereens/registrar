@@ -48,12 +48,12 @@ namespace Registrar.Models
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"Select students.* FROM courses
-                                INNER JOIN students_courses ON (courses.id = students_courses.course_id)
-                                INNER JOIN students ON (students_courses.student_id = students.id)
+                                JOIN students_courses ON (courses.id = students_courses.course_id)
+                                JOIN students ON (students_courses.student_id = students.id)
                                 WHERE courses.id = @courseId;";
 
             MySqlParameter courseIDParameter = new MySqlParameter();
-            courseIDParameter.ParameterName = "@courseID";
+            courseIDParameter.ParameterName = "@courseId";
             courseIDParameter.Value = Id;
             cmd.Parameters.Add(courseIDParameter);
 
@@ -86,7 +86,7 @@ namespace Registrar.Models
                 conn.Open();
 
                 var cmd = conn.CreateCommand() as MySqlCommand;
-                cmd.CommandText = @"SELECT * FROM `cities` WHERE id = @thisId;";
+                cmd.CommandText = @"SELECT * FROM courses WHERE id = @thisId;";
 
                 MySqlParameter thisId = new MySqlParameter();
                 thisId.ParameterName = "@thisId";
@@ -97,14 +97,16 @@ namespace Registrar.Models
 
                 int coursesId = 0;
                 string coursesName = "";
+                string courseNum = "";
 
                 while (rdr.Read())
                 {
                     coursesId = rdr.GetInt32(0);
                     coursesName = rdr.GetString(1);
+                    courseNum = rdr.GetString(2);
                 }
 
-                Course foundCourse = new Course(coursesName, coursesId);
+                Course foundCourse = new Course(coursesName, courseNum, coursesId);
 
                 conn.Close();
                 if (conn != null)
@@ -122,12 +124,17 @@ namespace Registrar.Models
             conn.Open();
 
             var cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"INSERT INTO cities (name) VALUES (@courseName);";
+            cmd.CommandText = @"INSERT INTO courses (name, course_code) VALUES (@courseName, @courseCode);";
 
             MySqlParameter courseName = new MySqlParameter();
             courseName.ParameterName = "@courseName";
             courseName.Value = this.Name;
             cmd.Parameters.Add(courseName);
+
+            MySqlParameter courseCode = new MySqlParameter();
+            courseCode.ParameterName = "@courseCode";
+            courseCode.Value = this.CourseNum;
+            cmd.Parameters.Add(courseCode);
 
             cmd.ExecuteNonQuery();
             Id = (int)cmd.LastInsertedId;
@@ -146,16 +153,17 @@ namespace Registrar.Models
             conn.Open();
 
             MySqlCommand cmd = conn.CreateCommand() as MySqlCommand;
-            cmd.CommandText = @"SELECT * FROM cities;";
+            cmd.CommandText = @"SELECT * FROM courses;";
 
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
 
             while (rdr.Read())
             {
-                string name = rdr.GetString(1);
                 int id = rdr.GetInt32(0);
+                string name = rdr.GetString(1);
+                string courseNum = rdr.GetString(2);
 
-                Course newCourse = new Course(name, id);
+                Course newCourse = new Course(name, courseNum, id);
                 allCourses.Add(newCourse);
             }
 

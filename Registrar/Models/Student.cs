@@ -31,7 +31,7 @@ namespace Registrar.Models
 
             MySqlParameter course_id = new MySqlParameter();
             course_id.ParameterName = "@CourseId";
-            course_id.Value = Id;
+            course_id.Value = course.Id;
             cmd.Parameters.Add(course_id);
 
             cmd.ExecuteNonQuery();
@@ -48,9 +48,9 @@ namespace Registrar.Models
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"Select courses.* FROM students
-                                INNER JOIN students_courses ON (students.id = students_courses.student_id)
-                                INNER JOIN courses ON (students_courses.course_id = courses.id)
-                                WHERE student.id = @studentId;";
+                                JOIN students_courses ON (students.id = students_courses.student_id)
+                                JOIN courses ON (students_courses.course_id = courses.id)
+                                WHERE students.id = @studentId;";
 
             MySqlParameter studentIdParameter = new MySqlParameter();
             studentIdParameter.ParameterName = "@studentId";
