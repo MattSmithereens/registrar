@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="jumbotron">
+            <h1>Cities</h1>
+        </div>
+        <a href="/new-course" class="btn btn-primary">Add New Course</a>
+        <a href="/" class="btn btn-primary">Return to Home</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <h3>Current Cities</h3>
+        @{
+            foreach (var city in Model)
+            {
+                <h4><a href="/course/@course.Id/details">@course.Name</a></h4>
+                <a href="/course/@course.Id/update" class="btn btn-primary">Edit</a>
+                <form class="inline-form-button" method="post" action="/course/@course.Id/delete"><button type="submit" class="btn btn-danger">Delete</button></form>
+                <hr />
+            }
+        }
+    </div>
+</div>

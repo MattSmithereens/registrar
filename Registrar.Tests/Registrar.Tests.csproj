@@ -12,4 +12,8 @@
     <PackageReference Include="MSTest.TestFramework" Version="1.1.17" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ControllersTests\" />
+    <Folder Include="ModelsTests\" />
+  </ItemGroup>
 </Project>

@@ -1,0 +1,28 @@
+﻿@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="jumbotron">
+            <h1>@Model.Name</h1>
+        </div>
+        <a href="/new-course" class="btn btn-primary">Add New Course</a>
+        <a href="/" class="btn btn-primary">Return to Home</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <h2><a href="/courses/@Model.Id/details">@Model.Name</a></h2>
+        <hr />
+        <form action="/courses/@Model.Id/update" method="post">
+            <div class="form-group">
+                <label for="newName">Name:</label>
+                <input type="text" name="newName" value="@Model.Name" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Edit</button>
+        </form>
+        <form class="inline-form-button" method="post" action="/city/@Model.Id/delete"><button type="submit" class="btn btn-danger">Delete</button></form>
+        <a href="/" class="btn btn-primary">Return to Home</a>
+    </div>
+</div>
